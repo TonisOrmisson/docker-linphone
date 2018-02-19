@@ -1,5 +1,4 @@
 FROM ubuntu:xenial
-ENV DEBIAN_FRONTEND teletype
 MAINTAINER Tõnis Ormisson <tonis@andmemasin.eu>
 
 # Installing dependencies of LinPhone
