@@ -7,7 +7,8 @@ MAINTAINER Tõnis Ormisson <tonis@andmemasin.eu>
 RUN DEBIAN_FRONTEND=noninteractive apt-get update &&  \
     apt-get -y install \
         software-properties-common \
-        python-software-properties
+        python-software-properties \
+        python-requests
 
 # Installing LinPhone
 RUN DEBIAN_FRONTEND=noninteractive  add-apt-repository ppa:linphone/release && \
@@ -38,6 +39,7 @@ ENV LANG=de_DE.utf-8
 
 # install requests
 RUN cd /tmp && pipenv install  requests
+RUN cd /tmp && pip3 install requests
 RUN apt -y install nano
 RUN apt -y install screen
 
