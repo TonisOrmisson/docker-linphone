@@ -55,3 +55,5 @@ RUN usermod -aG pulse,pulse-access user
 
 USER user
 RUN pulseaudio -D
+
+CMD ["linphonec"]
