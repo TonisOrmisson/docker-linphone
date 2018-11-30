@@ -2,7 +2,6 @@ FROM ubuntu:xenial
 MAINTAINER Tõnis Ormisson <tonis@andmemasin.eu>
 
 
-
 # Installing dependencies of LinPhone
 RUN DEBIAN_FRONTEND=noninteractive apt-get update &&  \
     apt-get -y install \
@@ -40,12 +39,12 @@ ENV LANG=de_DE.utf-8
 # install requests
 RUN cd /tmp && pipenv install  requests
 RUN cd /tmp && pip3 install requests
-RUN apt -y install nano
-RUN apt -y install screen
+RUN apt -y install nano screen
 
 
 # install alsa
 RUN apt install -y libasound2 libasound2-plugins alsa-utils alsa-oss
+
 # install pulseaudio
 RUN apt install -y pulseaudio pulseaudio-utils
 
@@ -58,4 +57,6 @@ RUN usermod -aG pulse,pulse-access user
 USER user
 RUN pulseaudio -D
 
-CMD ["linphonec"]
+# check audio playing
+RUN aplay /usr/share/sounds/linphone/ringback.wav
+CMD ["tail", "-f", "/dev/null"]
